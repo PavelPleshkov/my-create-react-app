@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+.none {
+  display: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #52a51e58;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body #root {
+  margin: 0 auto;
+  padding: 10px 20px;
+  max-width: 1140px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body p {
+  margin: 0 0 5px;
 }
 
-.App-link {
-  color: #61dafb;
+body .article {
+  background: #FFF;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  max-width: 600px;
+  margin: 0 0 5px;
+  -webkit-box-shadow: 2px 2px 5px -1px rgba(34, 202, 0, 0.565);
+          box-shadow: 2px 2px 5px -1px rgba(34, 202, 0, 0.565);
+  padding: 3px 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body .news__author {
+  -webkit-text-decoration: underline dotted #000000;
+          text-decoration: underline dotted #000000;
+  color: #52a51e;
 }
+
+body .news__count {
+  margin: 10px 0 0 0;
+  display: block;
+}
+
+body .add {
+  margin: 0 5px 5px 0;
+  width: 210px;
+  border: 1px dashed rgba(0, 89, 181, 0.82);
+  padding: 5px;
+}
+
+body .add__author, body .add__text, body .add__btn, body .add__checkrule {
+  display: block;
+  margin: 0 0 5px 0;
+  padding: 5px;
+  width: 94%;
+  border: 1px solid rgba(0, 89, 181, 0.82);
+}
+
+body .add__checkrule {
+  border: none;
+  font-size: 12px;
+}
+
+body .add__btn {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  color: #FFF;
+  text-transform: uppercase;
+  background: #007DDC;
+}
+
+body .add__btn:disabled {
+  background: #CCC;
+  color: #999;
+}
+/*# sourceMappingURL=App.css.map */

@@ -31,12 +31,78 @@ class App extends React.Component {
         this.setState({news: nextNews});
     }
 
+    static getDerivedStateFromProps(props, state) {
+        let nextFilteredNews
+    
+        // смотрим в state.news (ранее смотрели в props)
+        // и проверяем, чтобы не клоинировать null
+        // например, в момент первой отрисовки
+        if (Array.isArray(state.news)) {
+            nextFilteredNews = [...state.news]
+
+            nextFilteredNews.forEach((item, index) => {
+            if (item.bigText.toLowerCase().indexOf('pubg') !== -1) {
+                item.bigText = 'СПАМ'
+            }
+            })
+
+            return {
+            filteredNews: nextFilteredNews,
+            }
+        }
+
+        return null
+    }
+
+    componentDidMount() {
+        this.setState({ isLoading: true })
+        fetch('http://localhost:3000/data/newsData.json')
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setTimeout(() => {
+                    this.setState({ isLoading: false, news: data })
+                }, 1000) // изменил таймер на 1000, чтобы не ждать долго
+            })
+    }
+    // componentDidMount() {
+    //     // const {isLoading, news} = this.state;
+    //     // isLoading = true;
+    //     this.setState({isLoading: true});
+
+    //     fetch('http://localhost:3000/data/newsData.json')
+    //         .then((response) => {
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             //искусственная задержка 3 с:
+    //             setTimeout(() => {
+    //                 this.setState({
+    //                     isLoading: false,
+    //                     news: data
+    //                 });
+    //             }, 3000);
+                
+    //             // this.setState({
+    //             //     isLoading: false,
+    //             //     news: data
+    //             // });
+    //             console.log(this);
+    //             console.log('приехали данные', data);
+    //         })
+    // }
+
     render() {
+        const {news, isLoading} = this.state;
+
         return (
             <React.Fragment>
                 <Add onAddNews = {this.handleAddNews}/>
                 <h3>Новости</h3>
-                <News data={this.state.news}/> {/* добавили свойство data */}
+                {isLoading && <p>Загружаю...</p>}
+                {Array.isArray(news) && <News data={news} />}
+                {/*<News data={this.state.news}/>*/} {/* добавили свойство data */}
             </React.Fragment>
         )
     }
